@@ -2,8 +2,7 @@ import subprocess
 import psutil
 import os
 
-outline_key = ("ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpKY1Rmen"
-               "kwb2tvclJqVlhFUG9QaFM2@5.199.143.58:51830/?outline=1")
+outline_key = ("")
 
 outline_cli_command = ("sudo go run github.com/Jigsaw-Code/outline-sdk/x/examples"
                        "/outline-cli@latest -transport")
