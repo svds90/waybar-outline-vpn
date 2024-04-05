@@ -2,6 +2,8 @@ import subprocess
 import psutil
 import os
 
+from pprint import pprint
+
 outline_key = ("")
 
 outline_cli_command = ("sudo go run github.com/Jigsaw-Code/outline-sdk/x/examples"
@@ -43,6 +45,11 @@ def outline_stop():
     if outline_processes:
         for proc in outline_processes:
             os.system(f"sudo kill -SIGTERM {proc.pid}")
+
+            try:
+                proc.wait(timeout=1)
+            except psutil.TimeoutExpired:
+                os.system(f"sudo kill -SIGKILL {proc.pid}")
 
 
 def outline_toggle():
