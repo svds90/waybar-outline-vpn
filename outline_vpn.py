@@ -1,7 +1,9 @@
 import subprocess
 import psutil
+import sys
 import os
 
+import json
 from pprint import pprint
 
 outline_key = ("")
@@ -23,6 +25,7 @@ def find_outline_procs():
 
 
 def outline_status():
+    find_outline_procs()
     return bool(outline_processes)
 
 
@@ -53,8 +56,6 @@ def outline_stop():
 
 
 def outline_toggle():
-    find_outline_procs()
-
     if outline_status() is True:
         outline_stop()
     else:
@@ -62,4 +63,14 @@ def outline_toggle():
 
 
 if __name__ == "__main__":
-    outline_toggle()
+    data = {}
+    if len(sys.argv) > 1 and sys.argv[1] == "status":
+        if outline_status():
+            data['text'] = "󱇱 "
+            print(json.dumps(data), flush=True)
+        else:
+            data['text'] = "󰅤 "
+            print(json.dumps(data), flush=True)
+
+    elif len(sys.argv) > 1 and sys.argv[1] == "toggle":
+        outline_toggle()
