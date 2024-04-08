@@ -1,13 +1,9 @@
 import subprocess
 import psutil
-import sys
 import os
 
 import json
-from pprint import pprint
 
-outline_key = ("ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpKY1Rmen"
-               "kwb2tvclJqVlhFUG9QaFM2@5.199.143.58:51830/?outline=1")
 
 outline_cli_command = ("sudo go run github.com/Jigsaw-Code/outline-sdk/x/examples"
                        "/outline-cli@latest -transport")
@@ -64,16 +60,4 @@ def outline_toggle():
 
 
 if __name__ == "__main__":
-    data = {}
-    if len(sys.argv) > 1 and sys.argv[1] == "status":
-        if outline_status():
-            data['text'] = "󱇱 "
-            print(json.dumps(data), flush=True)
-        else:
-            data['text'] = "󰅤 "
-            print(json.dumps(data), flush=True)
-
-    elif len(sys.argv) > 1 and sys.argv[1] == "toggle":
-        data['text'] = "123"
-        print(json.dumps(data))
-        outline_toggle()
+    outline_toggle()
