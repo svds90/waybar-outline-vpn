@@ -2,12 +2,16 @@ import subprocess
 import json
 
 
-def find_outline_interface():
+def find_outline_intf():
     command = "ip a"
-    data = {}
     result = subprocess.run(command.split(), capture_output=True, text=True)
 
-    if "outline233" in result.stdout:
+    return "outline233" in result.stdout
+
+
+def print_outline_status():
+    data = {}
+    if find_outline_intf():
         data['text'] = " "
         print(json.dumps(data))
     else:
@@ -16,4 +20,4 @@ def find_outline_interface():
 
 
 if __name__ == "__main__":
-    find_outline_interface()
+    print_outline_status()
